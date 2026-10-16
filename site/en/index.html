@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cane Gallery · 万杖长廊</title>
+<meta name="description" content="Cane Gallery: a public community gallery of canes and walking sticks — gentleman canes, trekking poles, white canes, collectibles, and moments of people and canes through history.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2333504A'/%3E%3Cpath d='M38 14 a8 8 0 0 1 8 8 L30 52' stroke='%23F7F4EC' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-name">Cane Gallery<small>万杖长廊</small></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="../index.html" class="active">Gallery</a>
+      <a href="../essay.html">The Essay</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/issues/new/choose" target="_blank" rel="noopener">Submit</a>
+      <span class="lang">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">☾</button>
+        <a href="../index.html">中文</a><span class="sep">/</span>
+        <a href="index.html" class="on">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section class="hero">
+      <div class="hero-eyebrow">THE CANE GALLERY</div>
+      <h1>Cane Gallery</h1>
+      <p class="hero-desc">People and canes have walked together since the beginning. Here are photos of canes — gentleman canes, trekking poles, white canes, collectibles — from ancient times to today, from the street to the museum.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/litaotaoli/cane-gallery/issues/new/choose" target="_blank" rel="noopener">Submit a photo →</a>
+        <a class="btn btn-ghost" href="https://github.com/litaotaoli/cane-gallery" target="_blank" rel="noopener">Visit the GitHub repo</a>
+      </div>
+    </section>
+
+    <section class="section" id="essay">
+      <div class="section-head">
+        <span class="rule"></span>
+        <h2 class="section-title">A Cane, Ten Thousand Years</h2>
+        <span class="section-sub">From the stick to the multi-function cane · five faces of humanity's first tool</span>
+      </div>
+
+      <div class="history-overview">
+        <div class="history-cover" aria-label="Five faces of the staff">
+          <img src="../assets/essay/fig01.jpg" alt="Ancient · trading length for safety" loading="lazy">
+          <img src="../assets/essay/fig06.jpg" alt="Modern · the white cane" loading="lazy">
+          <img src="../assets/essay/fig12.jpg" alt="Industrial · the gentleman's cane" loading="lazy">
+          <img src="../assets/essay/fig14.jpg" alt="Agrarian · the carrying pole" loading="lazy">
+        </div>
+        <div class="history-summary">
+          <h3>Five faces of humanity's first tool</h3>
+          <p>A stick is probably the first tool humans ever picked up. It protects, probes, supports, marks identity and multiplies strength — five faces, one stick. From three million years ago to today, it has never "retired."</p>
+          <a class="btn btn-primary" href="../essay.html">Read the full essay →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-head">
+        <span class="rule"></span>
+        <h2 class="section-title">Gallery</h2>
+        <span class="section-sub" id="count-label">Loading…</span>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter">
+        <button type="button" class="chip on js-filter" data-tag="all">All</button>
+        <button type="button" class="chip js-filter" data-tag="illustration">Scene Illustrations</button>
+        <button type="button" class="chip js-filter" data-tag="gentleman">Gentleman Canes</button>
+        <button type="button" class="chip js-filter" data-tag="trekking">Trekking Poles</button>
+        <button type="button" class="chip js-filter" data-tag="mobility">Mobility Aids</button>
+        <button type="button" class="chip js-filter" data-tag="craft">Craft &amp; Material</button>
+        <button type="button" class="chip js-filter" data-tag="historical">Historical</button>
+      </div>
+
+      <div class="cards-grid" id="card-flow"></div>
+      <p class="empty" id="empty-hint" hidden>No photos in this category yet — be the first to submit!</p>
+      <div class="pager">
+        <button type="button" class="btn btn-ghost" id="cards-prev">← Prev</button>
+        <span class="pager-info" id="cards-page">1 / 1</span>
+        <button type="button" class="btn btn-ghost" id="cards-next">Next →</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">Cane Gallery</span>
+      <span class="footer-tagline">A public community gallery of cane photos</span>
+    </div>
+    <div class="footer-nav">
+      <a href="https://github.com/litaotaoli/cane-gallery" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/IMAGE_LICENSE.md" target="_blank" rel="noopener">Image License</a>
+    </div>
+    <div class="footer-meta">
+      <span>Image licenses declared per photo: CC0 / CC BY 4.0 / Public Domain</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Inline gallery data: auto-generated by tools/build_site.py */
+  window.__GALLERY_DATA__ = [{"id": "CANE-0001", "category": "illustration", "file": "illustration/illustration_202610_001.jpg", "title_zh": "抵御狮群 · 以棍护身", "title_en": "Defending with a Staff", "story_zh": "远古先民以木棍驱兽御敌。棍加上石，便是石斧、石矛之柄——以长度换安全，从最初就刻在棍里。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "防护", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：远古先民手持木棍面对狮群", "added_date": "2026-10-16"}, {"id": "CANE-0002", "category": "illustration", "file": "illustration/illustration_202610_002.jpg", "title_zh": "少林棍术 · 护身体系", "title_en": "Shaolin Staff Art", "story_zh": "棍术入武，成为护身体系。哨棒、棍法在民间与军旅代代传承，一根木棍便是随身武备。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "防护", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：武者持棍演练少林棍法", "added_date": "2026-10-16"}, {"id": "CANE-0003", "category": "illustration", "file": "illustration/illustration_202610_003.jpg", "title_zh": "持棍防犬 · 随身防护", "title_en": "Guard Stick", "story_zh": "工业时代，防身杖、警棍走向制式化。随身一寸长的棍，依然是傍晚散步的安心。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "防护", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：行人手持短棍走过街巷", "added_date": "2026-10-16"}, {"id": "CANE-0004", "category": "illustration", "file": "illustration/illustration_202610_004.jpg", "title_zh": "雨林探路 · 以杖开路", "title_en": "Pathfinding Stick", "story_zh": "以杖探路、试水、打草惊蛇——棍是触觉的延长，让未知的路先走一步。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "探测", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：旅人持杖在雨林中探路前行", "added_date": "2026-10-16"}, {"id": "CANE-0005", "category": "illustration", "file": "illustration/illustration_202610_005.jpg", "title_zh": "竹篙测深 · 行舟探底", "title_en": "Bamboo Pole Depth-finding", "story_zh": "船夫以篙测深探底。竹木的长度，是水路的方向感，也是夜航的胆。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "探测", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：船夫持竹篙在船头测水深", "added_date": "2026-10-16"}, {"id": "CANE-0006", "category": "illustration", "file": "illustration/illustration_202610_006.jpg", "title_zh": "盲杖探路 · 独立出行", "title_en": "White Cane Exploration", "story_zh": "1921 白手杖涂白，1931 白杖运动，1940 年代长杖技术成熟——杖为视障者夺回道路与独立。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "探测", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：视障者持白手杖探路独行", "added_date": "2026-10-16"}, {"id": "CANE-0007", "category": "illustration", "file": "illustration/illustration_202610_007.jpg", "title_zh": "拄杖迁徙 · 减负而行", "title_en": "Staff on the Move", "story_zh": "拄杖迁徙，把体重分给地面。长途之上，一支杖就是第三个支点。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "休息", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：迁徙者拄杖负物前行", "added_date": "2026-10-16"}, {"id": "CANE-0008", "category": "illustration", "file": "illustration/illustration_202610_008.jpg", "title_zh": "荷柴拄棍 · 歇肩而立", "title_en": "Resting on a Stick", "story_zh": "挑担歇脚时以棍撑地，肩头一松，便是农人一天里最安步的片刻。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "休息", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：农人挑柴担以棍撑地歇息", "added_date": "2026-10-16"}, {"id": "CANE-0009", "category": "illustration", "file": "illustration/illustration_202610_009.jpg", "title_zh": "地铁扶杆 · 公共支撑", "title_en": "Public Support Rail", "story_zh": "杖的支撑精神融进公共空间——扶手、扶杆、栏杆，让站立不再费力。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "休息", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：乘客扶地铁扶手杆站立", "added_date": "2026-10-16"}, {"id": "CANE-0010", "category": "illustration", "file": "illustration/illustration_202610_010.jpg", "title_zh": "萨满持杖 · 神权凭据", "title_en": "Shaman's Staff", "story_zh": "权杖与法杖：从部落首领到巫师，棍杖承载权力与神性。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "身份", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：萨满手持权杖立于部落前", "added_date": "2026-10-16"}, {"id": "CANE-0011", "category": "illustration", "file": "illustration/illustration_202610_011.jpg", "title_zh": "唐僧锡杖 · 宣教之杖", "title_en": "Monk's Khakkhara", "story_zh": "锡杖随行，杖是僧人的身份，也是行走修行的凭据。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "身份", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：僧人手持锡杖行走", "added_date": "2026-10-16"}, {"id": "CANE-0012", "category": "illustration", "file": "illustration/illustration_202610_012.jpg", "title_zh": "绅士夹杖 · 品位符号", "title_en": "Gentleman's Cane", "story_zh": "绅士手杖时代：一柄杖，是礼仪、品位与身份的无声语言。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "身份", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：绅士西装持杖行走于街头", "added_date": "2026-10-16"}];
+</script>
+<script src="../js/main.js"></script>
+</body>
+</html>

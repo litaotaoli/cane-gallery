@@ -1,0 +1,44 @@
+name: Deploy gallery site to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 先校验元数据与照片一致性；不通过则阻止部署
+      - name: Validate metadata
+        run: python tools/validate_meta.py --root .
+
+      # 由 index.csv 重新生成画廊数据（index.html 内联 + photos.json）
+      - name: Build site data
+        run: python tools/build_site.py --root .
+
+      - uses: actions/configure-pages@v5
+
+      - name: Upload site/
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

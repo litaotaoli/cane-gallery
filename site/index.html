@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>万杖长廊 · Cane Gallery</title>
+<meta name="description" content="万杖长廊：只收录手杖静态照片的公开图库社区——绅士杖、徒步登山杖、白手杖、收藏杖，以及「人与杖」的历史瞬间。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2333504A'/%3E%3Cpath d='M38 14 a8 8 0 0 1 8 8 L30 52' stroke='%23F7F4EC' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-name">万杖长廊<small>Cane Gallery</small></span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html" class="active">画廊</a>
+      <a href="essay.html">一杖万年</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/issues/new/choose" target="_blank" rel="noopener">投稿</a>
+      <span class="lang">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题">☾</button>
+        <a href="index.html" class="on">中文</a><span class="sep">/</span>
+        <a href="en/index.html">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section class="hero">
+      <div class="hero-eyebrow">THE CANE GALLERY</div>
+      <h1>万杖长廊</h1>
+      <p class="hero-desc">古往今来，人与杖同行。这里是一张张手杖的照片——绅士杖、登山杖、白手杖、收藏杖，从远古到现代，从街头到博物馆。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/litaotaoli/cane-gallery/issues/new/choose" target="_blank" rel="noopener">投稿一张照片 →</a>
+        <a class="btn btn-ghost" href="https://github.com/litaotaoli/cane-gallery" target="_blank" rel="noopener">访问 GitHub 仓库</a>
+      </div>
+    </section>
+
+    <section class="section" id="essay">
+      <div class="section-head">
+        <span class="rule"></span>
+        <h2 class="section-title">一杖万年</h2>
+        <span class="section-sub">从木棍到多功能杖 · 人类第一件工具的五张面孔</span>
+      </div>
+
+      <div class="history-overview">
+        <div class="history-cover" aria-label="棍杖的五种面孔">
+          <img src="assets/essay/fig01.jpg" alt="远古 · 以长度换安全" loading="lazy">
+          <img src="assets/essay/fig06.jpg" alt="现代 · 白手杖探路" loading="lazy">
+          <img src="assets/essay/fig12.jpg" alt="工业社会 · 绅士手杖" loading="lazy">
+          <img src="assets/essay/fig14.jpg" alt="农业社会 · 扁担助力" loading="lazy">
+        </div>
+        <div class="history-summary">
+          <h3>人类第一件工具的五张面孔</h3>
+          <p>一根木棍，大约是人类拿起的第一件工具。它护身、探路、支撑、立威，还替人省力——五张面孔，一根杖。从三百万年前到今天，从未“退役”。</p>
+          <a class="btn btn-primary" href="essay.html">阅读全文 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-head">
+        <span class="rule"></span>
+        <h2 class="section-title">画廊</h2>
+        <span class="section-sub" id="count-label">加载中…</span>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="筛选">
+        <button type="button" class="chip on js-filter" data-tag="all">全部</button>
+        <button type="button" class="chip js-filter" data-tag="illustration">场景图鉴</button>
+        <button type="button" class="chip js-filter" data-tag="gentleman">绅士杖 · 收藏杖</button>
+        <button type="button" class="chip js-filter" data-tag="trekking">徒步杖 · 登山杖</button>
+        <button type="button" class="chip js-filter" data-tag="mobility">助行杖 · 白手杖</button>
+        <button type="button" class="chip js-filter" data-tag="craft">工艺 · 材质</button>
+        <button type="button" class="chip js-filter" data-tag="historical">历史影像</button>
+      </div>
+
+      <div class="cards-grid" id="card-flow"></div>
+      <p class="empty" id="empty-hint" hidden>这个分类下还没有照片——来投第一张吧！</p>
+      <div class="pager">
+        <button type="button" class="btn btn-ghost" id="cards-prev">← 上一批</button>
+        <span class="pager-info" id="cards-page">1 / 1</span>
+        <button type="button" class="btn btn-ghost" id="cards-next">下一批 →</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">万杖长廊</span>
+      <span class="footer-tagline">只收录手杖照片的公开图库社区</span>
+    </div>
+    <div class="footer-nav">
+      <a href="https://github.com/litaotaoli/cane-gallery" target="_blank" rel="noopener">GitHub 仓库</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">贡献指南</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/IMAGE_LICENSE.md" target="_blank" rel="noopener">图片许可</a>
+    </div>
+    <div class="footer-meta">
+      <span>图片许可逐图声明：CC0 / CC BY 4.0 / 公有领域</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* 内联画廊数据：由 tools/build_site.py 自动生成，本地 file:// 打开也能渲染 */
+  window.__GALLERY_DATA__ = [{"id": "CANE-0001", "category": "illustration", "file": "illustration/illustration_202610_001.jpg", "title_zh": "抵御狮群 · 以棍护身", "title_en": "Defending with a Staff", "story_zh": "远古先民以木棍驱兽御敌。棍加上石，便是石斧、石矛之柄——以长度换安全，从最初就刻在棍里。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "防护", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：远古先民手持木棍面对狮群", "added_date": "2026-10-16"}, {"id": "CANE-0002", "category": "illustration", "file": "illustration/illustration_202610_002.jpg", "title_zh": "少林棍术 · 护身体系", "title_en": "Shaolin Staff Art", "story_zh": "棍术入武，成为护身体系。哨棒、棍法在民间与军旅代代传承，一根木棍便是随身武备。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "防护", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：武者持棍演练少林棍法", "added_date": "2026-10-16"}, {"id": "CANE-0003", "category": "illustration", "file": "illustration/illustration_202610_003.jpg", "title_zh": "持棍防犬 · 随身防护", "title_en": "Guard Stick", "story_zh": "工业时代，防身杖、警棍走向制式化。随身一寸长的棍，依然是傍晚散步的安心。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "防护", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：行人手持短棍走过街巷", "added_date": "2026-10-16"}, {"id": "CANE-0004", "category": "illustration", "file": "illustration/illustration_202610_004.jpg", "title_zh": "雨林探路 · 以杖开路", "title_en": "Pathfinding Stick", "story_zh": "以杖探路、试水、打草惊蛇——棍是触觉的延长，让未知的路先走一步。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "探测", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：旅人持杖在雨林中探路前行", "added_date": "2026-10-16"}, {"id": "CANE-0005", "category": "illustration", "file": "illustration/illustration_202610_005.jpg", "title_zh": "竹篙测深 · 行舟探底", "title_en": "Bamboo Pole Depth-finding", "story_zh": "船夫以篙测深探底。竹木的长度，是水路的方向感，也是夜航的胆。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "探测", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：船夫持竹篙在船头测水深", "added_date": "2026-10-16"}, {"id": "CANE-0006", "category": "illustration", "file": "illustration/illustration_202610_006.jpg", "title_zh": "盲杖探路 · 独立出行", "title_en": "White Cane Exploration", "story_zh": "1921 白手杖涂白，1931 白杖运动，1940 年代长杖技术成熟——杖为视障者夺回道路与独立。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "探测", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：视障者持白手杖探路独行", "added_date": "2026-10-16"}, {"id": "CANE-0007", "category": "illustration", "file": "illustration/illustration_202610_007.jpg", "title_zh": "拄杖迁徙 · 减负而行", "title_en": "Staff on the Move", "story_zh": "拄杖迁徙，把体重分给地面。长途之上，一支杖就是第三个支点。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "休息", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：迁徙者拄杖负物前行", "added_date": "2026-10-16"}, {"id": "CANE-0008", "category": "illustration", "file": "illustration/illustration_202610_008.jpg", "title_zh": "荷柴拄棍 · 歇肩而立", "title_en": "Resting on a Stick", "story_zh": "挑担歇脚时以棍撑地，肩头一松，便是农人一天里最安步的片刻。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "休息", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：农人挑柴担以棍撑地歇息", "added_date": "2026-10-16"}, {"id": "CANE-0009", "category": "illustration", "file": "illustration/illustration_202610_009.jpg", "title_zh": "地铁扶杆 · 公共支撑", "title_en": "Public Support Rail", "story_zh": "杖的支撑精神融进公共空间——扶手、扶杆、栏杆，让站立不再费力。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "休息", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：乘客扶地铁扶手杆站立", "added_date": "2026-10-16"}, {"id": "CANE-0010", "category": "illustration", "file": "illustration/illustration_202610_010.jpg", "title_zh": "萨满持杖 · 神权凭据", "title_en": "Shaman's Staff", "story_zh": "权杖与法杖：从部落首领到巫师，棍杖承载权力与神性。", "photographer": "AMBLE", "year": "", "location": "", "era": "远古", "scene": "身份", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：萨满手持权杖立于部落前", "added_date": "2026-10-16"}, {"id": "CANE-0011", "category": "illustration", "file": "illustration/illustration_202610_011.jpg", "title_zh": "唐僧锡杖 · 宣教之杖", "title_en": "Monk's Khakkhara", "story_zh": "锡杖随行，杖是僧人的身份，也是行走修行的凭据。", "photographer": "AMBLE", "year": "", "location": "", "era": "农业社会", "scene": "身份", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：僧人手持锡杖行走", "added_date": "2026-10-16"}, {"id": "CANE-0012", "category": "illustration", "file": "illustration/illustration_202610_012.jpg", "title_zh": "绅士夹杖 · 品位符号", "title_en": "Gentleman's Cane", "story_zh": "绅士手杖时代：一柄杖，是礼仪、品位与身份的无声语言。", "photographer": "AMBLE", "year": "", "location": "", "era": "工业社会", "scene": "身份", "license": "CC BY 4.0", "source": "ai_generated", "alt_text": "剪影插画：绅士西装持杖行走于街头", "added_date": "2026-10-16"}];
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+
+# 系统
+Thumbs.db
+.DS_Store
+
+# 本地构建缓存（CI 会重新生成，保留亦可）
+# site/photos/
+# site/data/photos.json
