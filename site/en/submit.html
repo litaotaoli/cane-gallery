@@ -57,7 +57,7 @@
           <label class="radio-card">
             <input type="radio" name="source" value="historical">
             <span class="rc-title">Public-domain historical image</span>
-            <span class="rc-desc">Old photo, scanned artwork · treated as Public Domain (PD); cite the source</span>
+            <span class="rc-desc">Old photo, scanned artwork · declare Public Domain (PD); no source link needed</span>
           </label>
         </div>
       </div>
@@ -80,10 +80,12 @@
         <input type="text" id="f-author" class="text-input" maxlength="40" placeholder="Nickname or real name, shown under the photo">
       </div>
 
-      <!-- Source URL (historical only) -->
-      <div class="field" id="source-url-field" hidden>
-        <label class="field-label" for="f-source-url">Source URL <span class="req">*</span><span class="field-hint">Required for historical: institution / work name or ID / link</span></label>
-        <input type="url" id="f-source-url" class="text-input" placeholder="https://… (museum, archive, or collection page)">
+      <!-- Public-domain declaration (historical only, no URL required) -->
+      <div class="field pd-note" id="pd-note-field" hidden>
+        <div class="pd-box">
+          <b>Public-domain declaration</b>
+          <p>You declare this historical image to be in the public domain (PD); a maintainer does a basic check. A source link may be added in the GitHub Issue later — not required to submit.</p>
+        </div>
       </div>
 
       <!-- License (self only) -->
@@ -155,7 +157,7 @@
   var form = document.getElementById("submit-form");
   var err = document.getElementById("form-error");
   var agree = document.getElementById("f-agree");
-  var urlField = document.getElementById("source-url-field");
+  var pdNote = document.getElementById("pd-note-field");
   var licenseField = document.getElementById("license-field");
   var radios = document.querySelectorAll('input[name="source"]');
 
@@ -165,7 +167,7 @@
   }
   function syncSource() {
     var hist = currentSource() === "historical";
-    urlField.hidden = !hist;
+    pdNote.hidden = !hist;
     licenseField.hidden = hist;
     if (hist) {
       var pd = document.createElement("input");
@@ -219,26 +221,24 @@
     var source = currentSource();
     var license = source === "historical" ? "PD"
       : (document.querySelector('input[name="license"]:checked') || {}).value || "CC BY 4.0";
-    var sourceUrl = document.getElementById("f-source-url").value.trim();
-
     if (!title) { showError("Please fill in the title."); document.getElementById("f-title").focus(); return; }
-    if (source === "historical" && !sourceUrl) { showError("Historical images require a source URL."); document.getElementById("f-source-url").focus(); return; }
     if (!agree.checked) { showError("Please check the authorization statement."); return; }
 
     var lines = [];
     lines.push("## Submission");
-    lines.push("- Source: " + (source === "self" ? "My own photo" : "Public-domain historical image"));
+    lines.push("- Source: " + (source === "self" ? "My own photo" : "Public-domain historical image (declared PD)"));
     lines.push("- Title: " + title);
     lines.push("- One-line story: " + (story || "—"));
     lines.push("- Credit: " + (author || "Anonymous"));
     lines.push("- License: " + license);
-    if (source === "historical") lines.push("- Source: " + sourceUrl);
     lines.push("");
     lines.push("## Photo");
     lines.push("(Please drag the photo into the attachment box below.)");
     lines.push("");
     lines.push("## Authorization");
-    lines.push("I confirm this photo was taken by me, or I have lawful authorization; I agree to publish it under the chosen license.");
+    lines.push(source === "historical"
+      ? "Declared public domain (PD) by the submitter; a maintainer does a basic check and may request removal if copyright emerges."
+      : "I confirm this photo was taken by me, or I have lawful authorization; I agree to publish it under the chosen license.");
 
     var q = new URLSearchParams();
     q.set("title", "[Submission] " + title);

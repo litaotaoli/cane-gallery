@@ -154,6 +154,9 @@ main{min-height:70vh;}
 .rc-desc{display:block; font-size:12.5px; color:var(--muted); line-height:1.6;}
 .radio-inline{display:flex; gap:22px; flex-wrap:wrap; font-size:14px; color:var(--ink);}
 .radio-inline label{display:flex; gap:7px; align-items:center; cursor:pointer;}
+.pd-box{background:var(--light); border:1px solid var(--line); border-radius:12px; padding:14px 16px;}
+.pd-box b{color:var(--green); font-size:14.5px;}
+.pd-box p{font-size:13px; color:var(--muted); margin-top:6px; line-height:1.7;}
 .drop-zone{border:1.5px dashed var(--line); border-radius:12px; padding:26px 18px; text-align:center; cursor:pointer; transition:border-color .2s; background:var(--bg);}
 .drop-zone:hover{border-color:var(--green);}
 .dz-empty{color:var(--muted); font-size:14px;}

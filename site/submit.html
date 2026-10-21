@@ -57,7 +57,7 @@
           <label class="radio-card">
             <input type="radio" name="source" value="historical">
             <span class="rc-title">公有领域历史影像</span>
-            <span class="rc-desc">老照片、画作扫描 · 自动按公有领域（PD），需附出处</span>
+            <span class="rc-desc">老照片、画作扫描 · 声明公有领域（PD）即可，无需填出处</span>
           </label>
         </div>
       </div>
@@ -80,10 +80,12 @@
         <input type="text" id="f-author" class="text-input" maxlength="30" placeholder="昵称或真名，将显示在照片下方">
       </div>
 
-      <!-- 出处（仅历史图） -->
-      <div class="field" id="source-url-field" hidden>
-        <label class="field-label" for="f-source-url">出处 URL <span class="req">*</span><span class="field-hint">历史图必填：来源机构 / 作品名或编号 / 链接</span></label>
-        <input type="url" id="f-source-url" class="text-input" placeholder="https://…（博物馆、档案馆或收藏页）">
+      <!-- 公有领域声明（仅历史图，无需填出处） -->
+      <div class="field pd-note" id="pd-note-field" hidden>
+        <div class="pd-box">
+          <b>公有领域声明</b>
+          <p>你声明这张历史影像属于公有领域（PD），维护者会做基本核实；若手上有出处链接，可在提交后的 GitHub Issue 里补充，不填也能投稿。</p>
+        </div>
       </div>
 
       <!-- 许可（当代照可选） -->
@@ -155,7 +157,7 @@
   var form = document.getElementById("submit-form");
   var err = document.getElementById("form-error");
   var agree = document.getElementById("f-agree");
-  var urlField = document.getElementById("source-url-field");
+  var pdNote = document.getElementById("pd-note-field");
   var licenseField = document.getElementById("license-field");
   var radios = document.querySelectorAll('input[name="source"]');
 
@@ -165,7 +167,7 @@
   }
   function syncSource() {
     var hist = currentSource() === "historical";
-    urlField.hidden = !hist;
+    pdNote.hidden = !hist;
     licenseField.hidden = hist;
     if (hist) {
       var pd = document.createElement("input");
@@ -220,26 +222,24 @@
     var source = currentSource();
     var license = source === "historical" ? "PD"
       : (document.querySelector('input[name="license"]:checked') || {}).value || "CC BY 4.0";
-    var sourceUrl = document.getElementById("f-source-url").value.trim();
-
     if (!title) { showError("请先填写标题。"); document.getElementById("f-title").focus(); return; }
-    if (source === "historical" && !sourceUrl) { showError("历史图需要填写出处 URL。"); document.getElementById("f-source-url").focus(); return; }
     if (!agree.checked) { showError("请先勾选授权声明。"); return; }
 
     var lines = [];
     lines.push("## 投稿信息");
-    lines.push("- 来源：" + (source === "self" ? "我拍的当代照片" : "公有领域历史影像"));
+    lines.push("- 来源：" + (source === "self" ? "我拍的当代照片" : "公有领域历史影像（投稿者声明 PD）"));
     lines.push("- 标题：" + title);
     lines.push("- 一句话故事：" + (story || "—"));
     lines.push("- 署名：" + (author || "匿名"));
     lines.push("- 许可：" + license);
-    if (source === "historical") lines.push("- 出处：" + sourceUrl);
     lines.push("");
     lines.push("## 照片");
     lines.push("（请把照片拖到下方附件框）");
     lines.push("");
     lines.push("## 授权声明");
-    lines.push("本人确认此照片由本人拍摄，或已获合法授权；同意按上述许可在本仓库发布。");
+    lines.push(source === "historical"
+      ? "投稿者声明此历史影像属于公有领域（PD），维护者将做基本核实；如后续发现版权问题，配合撤下。"
+      : "本人确认此照片由本人拍摄，或已获合法授权；同意按上述许可在本仓库发布。");
 
     var q = new URLSearchParams();
     q.set("title", "[投稿] " + title);
