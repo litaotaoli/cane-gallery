@@ -112,6 +112,7 @@ main{min-height:70vh;}
 .footer-nav a{color:rgba(247,244,236,.85);}
 .footer-nav a:hover{color:var(--topbar-fg);}
 .footer-meta{font-size:12px; opacity:.7;}
+.visit-count{display:block; margin-top:6px; font-variant-numeric:tabular-nums;}
 
 @media (max-width:680px){
   .cards-grid{grid-template-columns:1fr;}
