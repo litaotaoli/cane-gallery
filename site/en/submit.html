@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit a Photo · Cane Gallery</title>
+<meta name="description" content="Submit a cane photo to the Cane Gallery: pick a source, write a title, drag the photo in — three steps.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2333504A'/%3E%3Cpath d='M38 14 a8 8 0 0 1 8 8 L30 52' stroke='%23F7F4EC' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-name">Cane Gallery<small>万杖长廊</small></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="../index.html">Gallery</a>
+      <a href="../essay.html">The Essay</a>
+      <a href="submit.html" class="active">Submit</a>
+      <span class="lang">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">☾</button>
+        <a href="../submit.html">中文</a><span class="sep">/</span>
+        <a href="submit.html" class="on">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container submit-wrap">
+
+    <section class="hero">
+      <div class="hero-eyebrow">SUBMIT A PHOTO</div>
+      <h1>Submit a Photo</h1>
+      <p class="hero-desc">Three steps: pick a source, write a title, submit. Everything else has a default — no coding needed.</p>
+    </section>
+
+    <ol class="steps">
+      <li><b>1 Fill in details</b><span>Choose "my own" or "historical", add a title</span></li>
+      <li><b>2 Preview photo</b><span>Pick a local file; it previews only on this page</span></li>
+      <li><b>3 Submit</b><span>On GitHub, drag the photo into the attachment box and submit</span></li>
+    </ol>
+
+    <form class="form-card" id="submit-form" novalidate>
+
+      <!-- Source -->
+      <div class="field">
+        <label class="field-label">What is this photo? <span class="req">*</span></label>
+        <div class="radio-cards" role="radiogroup" aria-label="Photo source">
+          <label class="radio-card">
+            <input type="radio" name="source" value="self" checked>
+            <span class="rc-title">My own photo</span>
+            <span class="rc-desc">I took it / my cane / a street snapshot · CC BY 4.0 by default</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="source" value="historical">
+            <span class="rc-title">Public-domain historical image</span>
+            <span class="rc-desc">Old photo, scanned artwork · treated as Public Domain (PD); cite the source</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <div class="field">
+        <label class="field-label" for="f-title">Title <span class="req">*</span><span class="field-hint">e.g. "Gentleman's cane on a rainy alley"</span></label>
+        <input type="text" id="f-title" class="text-input" maxlength="80" placeholder="Name this photo">
+      </div>
+
+      <!-- Story -->
+      <div class="field">
+        <label class="field-label" for="f-story">One-line story <span class="field-hint">optional</span></label>
+        <textarea id="f-story" class="text-input textarea" rows="2" maxlength="200" placeholder="Whose cane, where, what moment (may be left blank)"></textarea>
+      </div>
+
+      <!-- Credit -->
+      <div class="field">
+        <label class="field-label" for="f-author">Credit <span class="field-hint">optional · blank shows "Anonymous"</span></label>
+        <input type="text" id="f-author" class="text-input" maxlength="40" placeholder="Nickname or real name, shown under the photo">
+      </div>
+
+      <!-- Source URL (historical only) -->
+      <div class="field" id="source-url-field" hidden>
+        <label class="field-label" for="f-source-url">Source URL <span class="req">*</span><span class="field-hint">Required for historical: institution / work name or ID / link</span></label>
+        <input type="url" id="f-source-url" class="text-input" placeholder="https://… (museum, archive, or collection page)">
+      </div>
+
+      <!-- License (self only) -->
+      <div class="field" id="license-field">
+        <label class="field-label">License <span class="field-hint">CC BY 4.0 (keep credit) by default</span></label>
+        <div class="radio-inline">
+          <label><input type="radio" name="license" value="CC BY 4.0" checked> CC BY 4.0 · keep credit (recommended)</label>
+          <label><input type="radio" name="license" value="CC0"> CC0 · release to public domain</label>
+        </div>
+      </div>
+
+      <!-- Local preview only (not uploaded) -->
+      <div class="field">
+        <label class="field-label" for="f-file">Choose a photo to preview <span class="field-hint">Preview only, not uploaded; drag it into the GitHub attachment box at the last step</span></label>
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="f-file" accept="image/*" hidden>
+          <div class="dz-empty" id="dz-empty">Click to pick a jpg / png photo</div>
+          <div class="dz-preview" id="dz-preview" hidden>
+            <img id="dz-img" alt="Local preview">
+            <div class="dz-meta">
+              <span id="dz-name"></span>
+              <button type="button" class="dz-remove" id="dz-remove">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agreement -->
+      <label class="agree">
+        <input type="checkbox" id="f-agree" checked>
+        <span>I confirm this photo was taken by me, or I have lawful authorization; I agree to publish it under the chosen license.</span>
+      </label>
+
+      <p class="form-error" id="form-error" hidden></p>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="submit-btn">Submit →</button>
+        <a class="btn btn-ghost" href="../index.html">Back to Gallery</a>
+      </div>
+
+      <p class="form-note">After submitting, a new GitHub Issue opens with the body pre-filled. Just drag the photo into the attachment box and click "Submit new issue". A maintainer reviews it before it enters the gallery.</p>
+    </form>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">Cane Gallery</span>
+      <span class="footer-tagline">A public community gallery of cane photos</span>
+    </div>
+    <div class="footer-nav">
+      <a href="https://github.com/litaotaoli/cane-gallery" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/IMAGE_LICENSE.md" target="_blank" rel="noopener">Image License</a>
+    </div>
+    <div class="footer-meta">
+      <span>Image licenses declared per photo: CC0 / CC BY 4.0 / Public Domain</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var REPO = "https://github.com/litaotaoli/cane-gallery/issues/new";
+  var form = document.getElementById("submit-form");
+  var err = document.getElementById("form-error");
+  var agree = document.getElementById("f-agree");
+  var urlField = document.getElementById("source-url-field");
+  var licenseField = document.getElementById("license-field");
+  var radios = document.querySelectorAll('input[name="source"]');
+
+  function currentSource() {
+    var checked = document.querySelector('input[name="source"]:checked');
+    return checked ? checked.value : "self";
+  }
+  function syncSource() {
+    var hist = currentSource() === "historical";
+    urlField.hidden = !hist;
+    licenseField.hidden = hist;
+    if (hist) {
+      var pd = document.createElement("input");
+      pd.type = "hidden"; pd.name = "license"; pd.value = "PD"; pd.id = "license-pd";
+      licenseField.parentNode.insertBefore(pd, licenseField);
+    } else {
+      var old = document.getElementById("license-pd");
+      if (old) old.remove();
+    }
+  }
+  Array.prototype.forEach.call(radios, function (r) {
+    r.addEventListener("change", syncSource);
+  });
+  syncSource();
+
+  var fileInput = document.getElementById("f-file");
+  var dropZone = document.getElementById("drop-zone");
+  var dzEmpty = document.getElementById("dz-empty");
+  var dzPreview = document.getElementById("dz-preview");
+  var dzImg = document.getElementById("dz-img");
+  var dzName = document.getElementById("dz-name");
+  document.getElementById("dz-remove").addEventListener("click", function (e) {
+    e.preventDefault();
+    fileInput.value = "";
+    dzPreview.hidden = true; dzEmpty.hidden = false;
+  });
+  dropZone.addEventListener("click", function () { fileInput.click(); });
+  fileInput.addEventListener("change", function () {
+    var f = fileInput.files && fileInput.files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      dzImg.src = ev.target.result;
+      dzName.textContent = f.name + " · " + Math.round(f.size / 1024) + " KB";
+      dzPreview.hidden = false; dzEmpty.hidden = true;
+    };
+    reader.readAsDataURL(f);
+  });
+
+  function showError(msg) {
+    err.textContent = msg;
+    err.hidden = false;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    var title = document.getElementById("f-title").value.trim();
+    var story = document.getElementById("f-story").value.trim();
+    var author = document.getElementById("f-author").value.trim();
+    var source = currentSource();
+    var license = source === "historical" ? "PD"
+      : (document.querySelector('input[name="license"]:checked') || {}).value || "CC BY 4.0";
+    var sourceUrl = document.getElementById("f-source-url").value.trim();
+
+    if (!title) { showError("Please fill in the title."); document.getElementById("f-title").focus(); return; }
+    if (source === "historical" && !sourceUrl) { showError("Historical images require a source URL."); document.getElementById("f-source-url").focus(); return; }
+    if (!agree.checked) { showError("Please check the authorization statement."); return; }
+
+    var lines = [];
+    lines.push("## Submission");
+    lines.push("- Source: " + (source === "self" ? "My own photo" : "Public-domain historical image"));
+    lines.push("- Title: " + title);
+    lines.push("- One-line story: " + (story || "—"));
+    lines.push("- Credit: " + (author || "Anonymous"));
+    lines.push("- License: " + license);
+    if (source === "historical") lines.push("- Source: " + sourceUrl);
+    lines.push("");
+    lines.push("## Photo");
+    lines.push("(Please drag the photo into the attachment box below.)");
+    lines.push("");
+    lines.push("## Authorization");
+    lines.push("I confirm this photo was taken by me, or I have lawful authorization; I agree to publish it under the chosen license.");
+
+    var q = new URLSearchParams();
+    q.set("title", "[Submission] " + title);
+    q.set("body", lines.join("\n"));
+    window.open(REPO + "?" + q.toString(), "_blank", "noopener");
+  });
+})();
+</script>
+</body>
+</html>

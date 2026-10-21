@@ -130,3 +130,44 @@ main{min-height:70vh;}
   .history-overview{grid-template-columns:1fr;}
   .history-cover img{height:90px;}
 }
+
+/* ===== 投稿向导页 ===== */
+[hidden]{display:none !important;}
+.submit-wrap{max-width:720px; padding-bottom:60px;}
+.steps{list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:0 0 26px;}
+.steps li{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; text-align:center;}
+.steps b{display:block; color:var(--green); font-size:15px; margin-bottom:4px;}
+.steps span{font-size:12.5px; color:var(--muted); line-height:1.6;}
+.form-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:26px 26px 22px;}
+.field{margin-bottom:20px;}
+.field-label{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:8px;}
+.req{color:#b03a2e;}
+.field-hint{font-size:12.5px; font-weight:400; color:var(--muted);}
+.text-input{width:100%; background:var(--bg); border:1.5px solid var(--line); border-radius:10px; padding:11px 14px; font-size:15px; color:var(--ink); font-family:inherit; transition:border-color .2s;}
+.text-input:focus{outline:none; border-color:var(--green);}
+.textarea{resize:vertical; min-height:64px;}
+.radio-cards{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.radio-card{position:relative; display:block; border:1.5px solid var(--line); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all .2s; background:var(--bg);}
+.radio-card input{position:absolute; opacity:0;}
+.radio-card:has(input:checked){border-color:var(--green); background:var(--light);}
+.rc-title{display:block; font-size:15px; font-weight:700; color:var(--ink); margin-bottom:4px;}
+.rc-desc{display:block; font-size:12.5px; color:var(--muted); line-height:1.6;}
+.radio-inline{display:flex; gap:22px; flex-wrap:wrap; font-size:14px; color:var(--ink);}
+.radio-inline label{display:flex; gap:7px; align-items:center; cursor:pointer;}
+.drop-zone{border:1.5px dashed var(--line); border-radius:12px; padding:26px 18px; text-align:center; cursor:pointer; transition:border-color .2s; background:var(--bg);}
+.drop-zone:hover{border-color:var(--green);}
+.dz-empty{color:var(--muted); font-size:14px;}
+.dz-preview{display:flex; align-items:center; gap:14px; text-align:left;}
+.dz-preview img{width:96px; height:96px; object-fit:cover; border-radius:10px; flex:0 0 auto;}
+.dz-meta{display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--muted); word-break:break-all;}
+.dz-remove{background:none; border:none; color:#b03a2e; cursor:pointer; font-size:13px; padding:0; align-self:flex-start;}
+.agree{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--muted); margin:6px 0 18px; cursor:pointer; line-height:1.7;}
+.agree input{margin-top:4px;}
+.form-error{color:#b03a2e; font-size:14px; margin-bottom:14px;}
+.form-actions{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
+.form-note{margin-top:16px; font-size:12.5px; color:var(--muted); line-height:1.7;}
+@media (max-width:680px){
+  .steps{grid-template-columns:1fr;}
+  .radio-cards{grid-template-columns:1fr;}
+  .form-card{padding:20px 16px;}
+}

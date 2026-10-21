@@ -29,7 +29,7 @@
 
 投稿 = 你的一张照片 + 一段简短的说明。**不需要懂代码。**
 
-- **路径 A（推荐）**：点仓库的 **Issues → New Issue → 选择「照片投稿」模板**，填表单 + 把照片拖进 Issue 即可；
+- **路径 A（推荐）**：在站点点「投稿一张照片」走站内向导——选来源、写标题、提交，自动打开预填好的 Issue，把照片拖进附件框即可；
 - **路径 B**：熟悉 GitHub 的话，Fork → 照片放入 `photos/modern/` 或 `photos/historical/` → 在 `index.csv` 末尾追加一行 → 提 Pull Request。
 
 详细规则见 **[CONTRIBUTING.md](CONTRIBUTING.md)**。

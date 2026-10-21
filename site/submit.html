@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投稿一张照片 · 万杖长廊</title>
+<meta name="description" content="向万杖长廊投稿一张手杖照片：选来源、写标题、拖照片，三步完成。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2333504A'/%3E%3Cpath d='M38 14 a8 8 0 0 1 8 8 L30 52' stroke='%23F7F4EC' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-name">万杖长廊<small>Cane Gallery</small></span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html">画廊</a>
+      <a href="essay.html">一杖万年</a>
+      <a href="submit.html" class="active">投稿</a>
+      <span class="lang">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题">☾</button>
+        <a href="submit.html" class="on">中文</a><span class="sep">/</span>
+        <a href="en/submit.html">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container submit-wrap">
+
+    <section class="hero">
+      <div class="hero-eyebrow">SUBMIT A PHOTO</div>
+      <h1>投稿一张照片</h1>
+      <p class="hero-desc">三步即可：选来源、写标题、提交。其余信息都有默认值，不会操作代码也没关系。</p>
+    </section>
+
+    <ol class="steps">
+      <li><b>1 填写信息</b><span>选「我拍的 / 历史图」，起个标题即可</span></li>
+      <li><b>2 预览照片</b><span>本地选一张，只在本页预览</span></li>
+      <li><b>3 提交</b><span>跳到 GitHub 后把照片拖进附件框，点提交</span></li>
+    </ol>
+
+    <form class="form-card" id="submit-form" novalidate>
+
+      <!-- 来源二选一 -->
+      <div class="field">
+        <label class="field-label">这张照片是？<span class="req">*</span></label>
+        <div class="radio-cards" role="radiogroup" aria-label="照片来源">
+          <label class="radio-card">
+            <input type="radio" name="source" value="self" checked>
+            <span class="rc-title">我拍的当代照片</span>
+            <span class="rc-desc">我拍的、我家的杖、街头随拍 · 默认 CC BY 4.0</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="source" value="historical">
+            <span class="rc-title">公有领域历史影像</span>
+            <span class="rc-desc">老照片、画作扫描 · 自动按公有领域（PD），需附出处</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 标题 -->
+      <div class="field">
+        <label class="field-label" for="f-title">标题 <span class="req">*</span><span class="field-hint">≤20 字，例如「雨后巷口的绅士杖」</span></label>
+        <input type="text" id="f-title" class="text-input" maxlength="40" placeholder="给这张照片起个名字">
+      </div>
+
+      <!-- 一句话故事（可选） -->
+      <div class="field">
+        <label class="field-label" for="f-story">一句话故事 <span class="field-hint">可选 · ≤80 字</span></label>
+        <textarea id="f-story" class="text-input textarea" rows="2" maxlength="160" placeholder="这根杖是谁的、在哪、什么场景（可留空）"></textarea>
+      </div>
+
+      <!-- 署名（可选） -->
+      <div class="field">
+        <label class="field-label" for="f-author">署名 <span class="field-hint">可选 · 留空则显示「匿名」</span></label>
+        <input type="text" id="f-author" class="text-input" maxlength="30" placeholder="昵称或真名，将显示在照片下方">
+      </div>
+
+      <!-- 出处（仅历史图） -->
+      <div class="field" id="source-url-field" hidden>
+        <label class="field-label" for="f-source-url">出处 URL <span class="req">*</span><span class="field-hint">历史图必填：来源机构 / 作品名或编号 / 链接</span></label>
+        <input type="url" id="f-source-url" class="text-input" placeholder="https://…（博物馆、档案馆或收藏页）">
+      </div>
+
+      <!-- 许可（当代照可选） -->
+      <div class="field" id="license-field">
+        <label class="field-label">许可 <span class="field-hint">当代照默认 CC BY 4.0（保留署名）</span></label>
+        <div class="radio-inline">
+          <label><input type="radio" name="license" value="CC BY 4.0" checked> CC BY 4.0 · 保留署名（推荐）</label>
+          <label><input type="radio" name="license" value="CC0"> CC0 · 放弃版权，任何人可自由使用</label>
+        </div>
+      </div>
+
+      <!-- 本地照片预览（不上传） -->
+      <div class="field">
+        <label class="field-label" for="f-file">选择照片预览 <span class="field-hint">仅本地预览，不会上传；最后一步在 GitHub 页面拖入附件框</span></label>
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="f-file" accept="image/*" hidden>
+          <div class="dz-empty" id="dz-empty">点击选择一张 jpg / png 照片</div>
+          <div class="dz-preview" id="dz-preview" hidden>
+            <img id="dz-img" alt="本地预览">
+            <div class="dz-meta">
+              <span id="dz-name"></span>
+              <button type="button" class="dz-remove" id="dz-remove">移除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 授权声明 -->
+      <label class="agree">
+        <input type="checkbox" id="f-agree" checked>
+        <span>我确认：此照片由我本人拍摄，或我已获得合法授权；同意按所选许可在本仓库发布。</span>
+      </label>
+
+      <p class="form-error" id="form-error" hidden></p>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="submit-btn">提交投稿 →</button>
+        <a class="btn btn-ghost" href="index.html">返回画廊</a>
+      </div>
+
+      <p class="form-note">提交后会打开 GitHub 的新 Issue 页面，正文已自动填好；你只需把照片拖进附件框，点「Submit new issue」。维护者审核后会把照片收进画廊。</p>
+    </form>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">万杖长廊</span>
+      <span class="footer-tagline">只收录手杖照片的公开图库社区</span>
+    </div>
+    <div class="footer-nav">
+      <a href="https://github.com/litaotaoli/cane-gallery" target="_blank" rel="noopener">GitHub 仓库</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">贡献指南</a>
+      <a href="https://github.com/litaotaoli/cane-gallery/blob/main/IMAGE_LICENSE.md" target="_blank" rel="noopener">图片许可</a>
+    </div>
+    <div class="footer-meta">
+      <span>图片许可逐图声明：CC0 / CC BY 4.0 / 公有领域</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var REPO = "https://github.com/litaotaoli/cane-gallery/issues/new";
+  var form = document.getElementById("submit-form");
+  var err = document.getElementById("form-error");
+  var agree = document.getElementById("f-agree");
+  var urlField = document.getElementById("source-url-field");
+  var licenseField = document.getElementById("license-field");
+  var radios = document.querySelectorAll('input[name="source"]');
+
+  function currentSource() {
+    var checked = document.querySelector('input[name="source"]:checked');
+    return checked ? checked.value : "self";
+  }
+  function syncSource() {
+    var hist = currentSource() === "historical";
+    urlField.hidden = !hist;
+    licenseField.hidden = hist;
+    if (hist) {
+      var pd = document.createElement("input");
+      pd.type = "hidden"; pd.name = "license"; pd.value = "PD"; pd.id = "license-pd";
+      licenseField.parentNode.insertBefore(pd, licenseField);
+    } else {
+      var old = document.getElementById("license-pd");
+      if (old) old.remove();
+    }
+  }
+  Array.prototype.forEach.call(radios, function (r) {
+    r.addEventListener("change", syncSource);
+  });
+  syncSource();
+
+  /* 本地预览（不上传） */
+  var fileInput = document.getElementById("f-file");
+  var dropZone = document.getElementById("drop-zone");
+  var dzEmpty = document.getElementById("dz-empty");
+  var dzPreview = document.getElementById("dz-preview");
+  var dzImg = document.getElementById("dz-img");
+  var dzName = document.getElementById("dz-name");
+  document.getElementById("dz-remove").addEventListener("click", function (e) {
+    e.preventDefault();
+    fileInput.value = "";
+    dzPreview.hidden = true; dzEmpty.hidden = false;
+  });
+  dropZone.addEventListener("click", function () { fileInput.click(); });
+  fileInput.addEventListener("change", function () {
+    var f = fileInput.files && fileInput.files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      dzImg.src = ev.target.result;
+      dzName.textContent = f.name + " · " + Math.round(f.size / 1024) + " KB";
+      dzPreview.hidden = false; dzEmpty.hidden = true;
+    };
+    reader.readAsDataURL(f);
+  });
+
+  function showError(msg) {
+    err.textContent = msg;
+    err.hidden = false;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    var title = document.getElementById("f-title").value.trim();
+    var story = document.getElementById("f-story").value.trim();
+    var author = document.getElementById("f-author").value.trim();
+    var source = currentSource();
+    var license = source === "historical" ? "PD"
+      : (document.querySelector('input[name="license"]:checked') || {}).value || "CC BY 4.0";
+    var sourceUrl = document.getElementById("f-source-url").value.trim();
+
+    if (!title) { showError("请先填写标题。"); document.getElementById("f-title").focus(); return; }
+    if (source === "historical" && !sourceUrl) { showError("历史图需要填写出处 URL。"); document.getElementById("f-source-url").focus(); return; }
+    if (!agree.checked) { showError("请先勾选授权声明。"); return; }
+
+    var lines = [];
+    lines.push("## 投稿信息");
+    lines.push("- 来源：" + (source === "self" ? "我拍的当代照片" : "公有领域历史影像"));
+    lines.push("- 标题：" + title);
+    lines.push("- 一句话故事：" + (story || "—"));
+    lines.push("- 署名：" + (author || "匿名"));
+    lines.push("- 许可：" + license);
+    if (source === "historical") lines.push("- 出处：" + sourceUrl);
+    lines.push("");
+    lines.push("## 照片");
+    lines.push("（请把照片拖到下方附件框）");
+    lines.push("");
+    lines.push("## 授权声明");
+    lines.push("本人确认此照片由本人拍摄，或已获合法授权；同意按上述许可在本仓库发布。");
+
+    var q = new URLSearchParams();
+    q.set("title", "[投稿] " + title);
+    q.set("body", lines.join("\n"));
+    window.open(REPO + "?" + q.toString(), "_blank", "noopener");
+  });
+})();
+</script>
+</body>
+</html>
